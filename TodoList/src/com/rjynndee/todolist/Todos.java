@@ -1,37 +1,41 @@
 package com.rjynndee.todolist;
 
 public class Todos {
-	protected String todoName;
-	protected boolean checked;
-	protected boolean archived;
+	protected String TodoName;
+	protected boolean TodoChecked;
+	protected boolean TodoArchived;
 	
-	public Todos(String todo) {
-		this.todoName = todo;
-		this.checked = false;
-		this.archived = false;
+	public Todos(String todoname) {
+		this.TodoName = todoname;
+		this.TodoChecked = false;
+		this.TodoArchived = false;
 	}
 
 	public String getName() {
-		return this.todoName;
+		return this.TodoName;
 	}
 	
 	public void changeCheck(){
-		boolean bool = checked == false;
-		this.checked = bool;
+		boolean bool = TodoChecked == false;
+		this.TodoChecked = bool;
 		
 	}
 
 	public boolean getchecked() {
-		return this.checked;
+		return this.TodoChecked;
 	}
 
 	public boolean getarchived() {
-		return this.archived;
+		return this.TodoArchived;
 	}
 
 	public void changeArchived() {
-		boolean bool = this.archived == false;
-		this.archived = bool;
+		boolean bool = this.TodoArchived == false;
+		this.TodoArchived = bool;
+	}
+	
+	public String toString(){
+		return getName();
 	}
 
 }

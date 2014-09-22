@@ -19,11 +19,20 @@
 
 package com.rjynndee.todolist;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -32,6 +41,33 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		ListView listview = (ListView) findViewById(R.id.listofTodosList);
+		Collection<Todos> Todoscoll = ListController.getTodoList().getTodos();
+		final ArrayList<Todos> list = new ArrayList<Todos>(Todoscoll);
+		final ArrayAdapter<Todos> TodoAdapter = new ArrayAdapter<Todos>(this, android.R.layout.simple_list_item_1,list);
+		listview.setAdapter(TodoAdapter);
+		
+		//added observer
+		ListController.getTodoList().addListener(new Listener(){
+			public void update(){
+				list.clear();
+				Collection<Todos> Todoscoll = ListController.getTodoList().getTodos();
+				list.addAll(Todoscoll);
+				TodoAdapter.notifyDataSetChanged();
+			}
+		});
+		
+		listview.setOnItemLongClickListener(new OnItemLongClickListener(){
+			@Override
+			public boolean onItemLongClick(AdapterView<?> adapterView, View view,
+					int position, long id) {
+				Toast.makeText(MainActivity.this, "Deleted "+list.get(position).toString(), Toast.LENGTH_SHORT).show();
+				Todos todo = list.get(position);
+				ListController.getTodoList().removetodo(todo);
+				return false;
+			}
+			
+		});
 	}
 
 	@Override
@@ -61,5 +97,12 @@ public class MainActivity extends Activity {
 		Toast.makeText(this, "Archives", Toast.LENGTH_SHORT).show();
 		Intent intent = new Intent(MainActivity.this, ListToDosActivity.class);
 		startActivity(intent);
+	}
+	
+	public void addTodoAction(View view){
+		Toast.makeText(this, "Added an item", Toast.LENGTH_SHORT).show();
+		ListController ls = new ListController();
+		EditText textView = (EditText) findViewById(R.id.AddNewToDoTextField);
+		ls.addToDo(new Todos(textView.getText().toString()));
 	}
 }

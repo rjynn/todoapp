@@ -9,13 +9,14 @@
     tools:context="com.rjynndee.todolist.MainActivity" >
 
     <Button
-        android:id="@+id/addToDoListButton"
+        android:id="@+id/addTodoButton"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:text="@string/add"/>
+        android:onClick="addTodoAction"
+        android:text="@string/add" />
 
     <EditText
         android:id="@+id/AddNewToDoTextField"
@@ -30,10 +31,10 @@
     </EditText>
 
     <ListView
-        android:id="@+id/archived_listview"
+        android:id="@+id/listofTodosList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/addToDoListButton"
+        android:layout_above="@+id/addTodoButton"
         android:layout_alignParentTop="true" >
 
     </ListView>
