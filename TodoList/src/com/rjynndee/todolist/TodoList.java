@@ -1,10 +1,15 @@
 package com.rjynndee.todolist;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class TodoList {
+public class TodoList implements Serializable{
+	/**
+	 * To do list serializable
+	 */
+	private static final long serialVersionUID = 3806350054526394913L;
 	protected ArrayList<Todos> list;
 	protected ArrayList<Listener> listeners;
 	
@@ -37,5 +42,12 @@ public class TodoList {
 	public void removeListener(Listener l) {
 		listeners.remove(l);
 		
+	}
+	
+	public boolean contains(Todos todo){
+		return list.contains(todo);
+	}
+	public int size(){
+		return  list.size();
 	}
 }
