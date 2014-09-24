@@ -43,5 +43,24 @@ public class Todos implements Serializable{
 	public String toString(){
 		return getName();
 	}
+	public boolean equals(Object compareTodo){
+		if (compareTodo != null && compareTodo.getClass()== this.getClass()){
+			return this.equals((Todos)compareTodo);
+		}
+		else{
+			return false;
+		}
+	}
+	
+	public boolean equals(Todos compareTodo){
+		if(compareTodo == null){
+			return false;}
+		return getName().equals(compareTodo.getName());
+	}
+	
+	public int hashCode(){
+		return ("Todo:"+getName()).hashCode();
+	}
+	
 
 }

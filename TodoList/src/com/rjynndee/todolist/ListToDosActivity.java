@@ -13,6 +13,8 @@ public class ListToDosActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.archived);
+		ToDoListManager.initManager(this.getApplicationContext());
+
 	}
 
 	@Override
