@@ -1,3 +1,5 @@
+//should really be changing this to archive activity
+
 package com.rjynndee.todolist;
 
 import android.app.Activity;

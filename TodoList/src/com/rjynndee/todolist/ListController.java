@@ -1,3 +1,5 @@
+//this controls and manipulates the class todolist when app is running
+
 package com.rjynndee.todolist;
 
 public class ListController {

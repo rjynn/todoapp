@@ -45,14 +45,14 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		ListView listview = (ListView) findViewById(R.id.listofTodosList);
-		Collection<Todos> Todoscoll = ListController.getTodoList().getTodos();
+		Collection<Todos> Todoscoll = ListController.getTodoList().getTodos(); //need to specify what is in the listview
 		final ArrayList<Todos> list = new ArrayList<Todos>(Todoscoll);
 		final ArrayAdapter<Todos> TodoAdapter = new ArrayAdapter<Todos>(this, android.R.layout.simple_list_item_1,list);
-		listview.setAdapter(TodoAdapter);
+		listview.setAdapter(TodoAdapter); //this adapter controls the view of the listview
 		
-		//added observer
+		//added observer to update the list when changes occur 
 		ListController.getTodoList().addListener(new Listener(){
-			public void update(){
+			public void update(){ //this will be called when listener is notified
 				list.clear();
 				Collection<Todos> Todoscoll = ListController.getTodoList().getTodos();
 				list.addAll(Todoscoll);
@@ -62,10 +62,10 @@ public class MainActivity extends Activity {
 		
 		listview.setOnItemLongClickListener(new OnItemLongClickListener(){
 			@Override
-			public boolean onItemLongClick(AdapterView<?> adapterView, View view,
+			public boolean onItemLongClick(AdapterView<?> adapterView, View view,	//would like to change this to menu
 					int position, long id) {
 				AlertDialog.Builder adb = new AlertDialog.Builder(MainActivity.this);
-				adb.setMessage("Delete"+list.get(position).toString()+"?");
+				adb.setMessage("Delete "+list.get(position).toString()+"?");
 				adb.setCancelable(true);
 				final int finalPosition = position;
 				adb.setPositiveButton("Delete", new OnClickListener(){
@@ -80,11 +80,8 @@ public class MainActivity extends Activity {
 				adb.setNegativeButton("Cancel", new OnClickListener(){
 
 					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						// TODO Auto-generated method stub
-						
+					public void onClick(DialogInterface dialog, int which) {	
 					}
-					
 				});
 				adb.show();
 				return false;
@@ -127,5 +124,6 @@ public class MainActivity extends Activity {
 		ListController ls = new ListController();
 		EditText textView = (EditText) findViewById(R.id.AddNewToDoTextField);
 		ls.addToDo(new Todos(textView.getText().toString()));
+		textView.setText(null);
 	}
 }

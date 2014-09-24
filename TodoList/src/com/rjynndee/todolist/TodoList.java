@@ -1,3 +1,4 @@
+//this is the class of the list of to dos
 package com.rjynndee.todolist;
 
 
@@ -36,6 +37,12 @@ public class TodoList {
 	}
 	public void removeListener(Listener l) {
 		listeners.remove(l);
-		
+	}
+	
+	public boolean contains(Todos todo){
+		return list.contains(todo);
+	}
+	public int size(){
+		return list.size();
 	}
 }
