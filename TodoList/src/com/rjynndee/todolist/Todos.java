@@ -1,6 +1,12 @@
 package com.rjynndee.todolist;
 
-public class Todos {
+import java.io.Serializable;
+
+public class Todos implements Serializable{
+	/**
+	 * Todos serializable ID
+	 */
+	private static final long serialVersionUID = 7974133207631838292L;
 	protected String TodoName;
 	protected boolean TodoChecked;
 	protected boolean TodoArchived;

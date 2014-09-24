@@ -2,10 +2,15 @@
 package com.rjynndee.todolist;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class TodoList {
+public class TodoList implements Serializable{
+	/**
+	 * Todolist serialization ID
+	 */
+	private static final long serialVersionUID = -851483106886788193L;
 	protected ArrayList<Todos> list;
 	protected ArrayList<Listener> listeners;
 	
