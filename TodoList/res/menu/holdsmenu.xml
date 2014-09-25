@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.rjynndee.todolist.MainActivity" >
+    <item android:id="@+id/DeleteHoldMenu" android:title="Delete"></item>
+    <item android:id="@+id/emailHoldsMenu" android:title="Email"></item>
+    <item android:id="@+id/archiveHoldsMenu" android:title="Archive"></item>
+
+</menu>

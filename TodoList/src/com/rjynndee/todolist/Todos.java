@@ -16,8 +16,8 @@ public class Todos implements Serializable{
 	
 	public Todos(String todoname) {
 		this.TodoName = todoname;
-		this.TodoChecked = true;
-		this.TodoArchived = true;
+		this.TodoChecked = false;
+		this.TodoArchived = false;
 	}
 
 	public String getName() {

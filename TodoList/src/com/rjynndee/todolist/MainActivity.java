@@ -28,10 +28,14 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -53,6 +57,8 @@ public class MainActivity extends Activity {
 		final NewListAdapter TodoAdapter = new NewListAdapter(this,R.layout.checkboxes_layout, list, ToDoListManager.getManager());
 		//final ArrayAdapter<Todos> TodoAdapter = new ArrayAdapter<Todos>(this, android.R.layout.simple_list_item_1,list);
 		listview.setAdapter(TodoAdapter); //this adapter controls the view of the listview
+		registerForContextMenu(listview);
+		
 		
 		//added observer to update the list when changes occur 
 		ListController.getTodoList().addListener(new Listener(){
@@ -64,10 +70,10 @@ public class MainActivity extends Activity {
 			}
 		});
 		
-		listview.setOnItemLongClickListener(new OnItemLongClickListener(){
+		/*listview.setOnItemLongClickListener(new OnItemLongClickListener(){
 			@Override
 			public boolean onItemLongClick(AdapterView<?> adapterView, View view,	//would like to change this to menu
-					int position, long id) {
+					int position, long id) { /*
 				AlertDialog.Builder adb = new AlertDialog.Builder(MainActivity.this);
 				adb.setMessage("Delete "+list.get(position).toString()+"?");
 				adb.setCancelable(true);
@@ -89,9 +95,11 @@ public class MainActivity extends Activity {
 				});
 				adb.show();
 				return false;
+				getMenuInflater().inflate(R.menu.holdsmenu, menu);
+				return false;
 			}
 			
-		});
+		});*/
 	}
 
 	@Override
@@ -99,6 +107,12 @@ public class MainActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo){
+		super.onCreateContextMenu(menu,v,menuInfo);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.holdsmenu,menu);
 	}
 
 	@Override
@@ -130,5 +144,19 @@ public class MainActivity extends Activity {
 		ls.addToDo(new Todos(textView.getText().toString()));
 		textView.setText(null);
 	}
+	
+	public boolean onContextItemSelected(MenuItem item){
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+		
+		switch (item.getItemId()) {
+		case R.id.DeleteHoldMenu:
+			Toast.makeText(this, Integer.toString(info.position), Toast.LENGTH_SHORT).show();
+			return true;
+		}
+		return true;
+	}
+
 
 }
+
+
