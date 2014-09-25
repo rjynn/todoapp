@@ -50,7 +50,7 @@ public class MainActivity extends Activity {
 		final ListView listview = (ListView) findViewById(R.id.listofTodosList);
 		Collection<Todos> Todoscoll = ListController.getTodoList().getTodos(); //need to specify what is in the listview
 		final ArrayList<Todos> list = new ArrayList<Todos>(Todoscoll);
-		final NewListAdapter TodoAdapter = new NewListAdapter(this,R.layout.checkboxes_layout, list);
+		final NewListAdapter TodoAdapter = new NewListAdapter(this,R.layout.checkboxes_layout, list, ToDoListManager.getManager());
 		//final ArrayAdapter<Todos> TodoAdapter = new ArrayAdapter<Todos>(this, android.R.layout.simple_list_item_1,list);
 		listview.setAdapter(TodoAdapter); //this adapter controls the view of the listview
 		

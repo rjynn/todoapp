@@ -1,6 +1,7 @@
 package com.rjynndee.todolist;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,11 +17,12 @@ import android.widget.Toast;
 public class NewListAdapter extends ArrayAdapter<Todos>{
 	private Context context;
 	private ArrayList<Todos> list;
-	
-	public NewListAdapter(Context context,int textViewResourceId, ArrayList<Todos> list){
+	private ToDoListManager mymanager;
+	public NewListAdapter(Context context,int textViewResourceId, ArrayList<Todos> list, ToDoListManager manager){
 		super(context, textViewResourceId, list);
 		this.context = context;
 		this.list = list;
+		mymanager = manager;
 	}
 
 	private class ViewHolder{
@@ -29,7 +31,6 @@ public class NewListAdapter extends ArrayAdapter<Todos>{
 	}
 	
 	public View getView(int position, View convertView, ViewGroup parent){
-		
 		ViewHolder holder = null;
 		Log.v("--ConvertView", String.valueOf(position));
 		if (convertView == null){
@@ -44,9 +45,16 @@ public class NewListAdapter extends ArrayAdapter<Todos>{
 			holder = (ViewHolder) convertView.getTag();
 		}
 		Todos todo = list.get(position);
+		todo.addListener(new Listener(){
+			public void update(){ 
+				TodoList newlist = new TodoList();
+				newlist.addAll(list);
+				mymanager.saveTodoList(newlist);//this will be called when listener is notified
+				
+			}
+		});
 		holder.TodoName.setText(todo.getName());
 		holder.check.setTag(todo);
-		Log.v("--should be true", Boolean.toString(todo.getchecked()));
 		holder.check.setChecked(todo.getchecked());
 
 		holder.check.setOnClickListener(new View.OnClickListener() {

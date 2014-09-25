@@ -1,6 +1,7 @@
 package com.rjynndee.todolist;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Todos implements Serializable{
 	/**
@@ -10,6 +11,8 @@ public class Todos implements Serializable{
 	protected String TodoName;
 	protected boolean TodoChecked;
 	protected boolean TodoArchived;
+	protected transient ArrayList<Listener> listeners = null; //dont need to save so transient
+	
 	
 	public Todos(String todoname) {
 		this.TodoName = todoname;
@@ -23,7 +26,8 @@ public class Todos implements Serializable{
 	
 	public void changeCheck(){
 		boolean bool = TodoChecked == false;
-		this.TodoChecked = bool;	
+		this.TodoChecked = bool;
+		notifyListeners();
 	}
 	public boolean getchecked() {
 		return this.TodoChecked;
@@ -36,6 +40,7 @@ public class Todos implements Serializable{
 	public void changeArchived() {
 		boolean bool = this.TodoArchived == false;
 		this.TodoArchived = bool;
+		notifyListeners();
 	}
 	
 	public String toString(){
@@ -59,6 +64,27 @@ public class Todos implements Serializable{
 	public int hashCode(){
 		return ("Todo:"+getName()).hashCode();
 	}
+	
+	private ArrayList<Listener> getListeners(){
+		if (listeners == null){
+			listeners = new ArrayList<Listener>();
+		}
+		return listeners;
+	}
+	public void notifyListeners(){
+		for(Listener listener : getListeners()){
+			listener.update();
+		}
+	}
+	
+	public void addListener(Listener l) {
+		getListeners().add(l);
+		
+	}
+	public void removeListener(Listener l) {
+		getListeners().remove(l);
+	}
+	
 	
 
 }
