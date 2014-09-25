@@ -45,10 +45,11 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		ToDoListManager.initManager(this.getApplicationContext());
-		ListView listview = (ListView) findViewById(R.id.listofTodosList);
+		final ListView listview = (ListView) findViewById(R.id.listofTodosList);
 		Collection<Todos> Todoscoll = ListController.getTodoList().getTodos(); //need to specify what is in the listview
 		final ArrayList<Todos> list = new ArrayList<Todos>(Todoscoll);
-		final ArrayAdapter<Todos> TodoAdapter = new ArrayAdapter<Todos>(this, android.R.layout.simple_list_item_1,list);
+		final NewListAdapter TodoAdapter = new NewListAdapter(this,R.layout.checkboxes_layout, list);
+		//final ArrayAdapter<Todos> TodoAdapter = new ArrayAdapter<Todos>(this, android.R.layout.simple_list_item_1,list);
 		listview.setAdapter(TodoAdapter); //this adapter controls the view of the listview
 		
 		//added observer to update the list when changes occur 
@@ -126,5 +127,8 @@ public class MainActivity extends Activity {
 		EditText textView = (EditText) findViewById(R.id.AddNewToDoTextField);
 		ls.addToDo(new Todos(textView.getText().toString()));
 		textView.setText(null);
+	}
+	public void changeDone(){
+		Toast.makeText(this, "checked", Toast.LENGTH_SHORT).show();
 	}
 }
