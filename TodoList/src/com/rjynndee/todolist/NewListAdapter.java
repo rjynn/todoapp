@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class NewListAdapter extends ArrayAdapter<Todos>{
 	private Context context;
@@ -44,7 +45,21 @@ public class NewListAdapter extends ArrayAdapter<Todos>{
 		}
 		Todos todo = list.get(position);
 		holder.TodoName.setText(todo.getName());
+		holder.check.setTag(todo);
+		Log.v("--should be true", Boolean.toString(todo.getchecked()));
 		holder.check.setChecked(todo.getchecked());
+
+		holder.check.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				final Todos clickedtodo = (Todos) v.getTag();
+				clickedtodo.changeCheck();
+				Toast.makeText(context, "Changed Checked", Toast.LENGTH_SHORT).show();
+			}
+		});
+		
+		
 		return convertView;
 		
 	}	

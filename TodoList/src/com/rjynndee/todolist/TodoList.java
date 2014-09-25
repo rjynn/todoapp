@@ -61,4 +61,13 @@ public class TodoList implements Serializable{
 	public int size(){
 		return list.size();
 	}
+/*
+	public void addAll(Collection<Todos> list2) {
+		list.addAll(list2);
+		
+	}
+*/
+	public Todos get(int position) {
+		return get(position);
+	}
 }

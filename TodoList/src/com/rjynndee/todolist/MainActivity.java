@@ -44,7 +44,9 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
 		ToDoListManager.initManager(this.getApplicationContext());
+		
 		final ListView listview = (ListView) findViewById(R.id.listofTodosList);
 		Collection<Todos> Todoscoll = ListController.getTodoList().getTodos(); //need to specify what is in the listview
 		final ArrayList<Todos> list = new ArrayList<Todos>(Todoscoll);
@@ -128,7 +130,5 @@ public class MainActivity extends Activity {
 		ls.addToDo(new Todos(textView.getText().toString()));
 		textView.setText(null);
 	}
-	public void changeDone(){
-		Toast.makeText(this, "checked", Toast.LENGTH_SHORT).show();
-	}
+
 }

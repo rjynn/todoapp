@@ -1,19 +1,15 @@
 package com.rjynndee.todolist;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.util.Base64;
+import android.util.Log;
 
 
-public class ToDoListManager {
-	static final String prefFile = "TodoList";
-	static final String tlkey = "TodoList";
+public class ToDoListManager implements IDataManager {
+	private static final String FILENAME = "file.sav";
 	Context context;
 	
 	static private ToDoListManager TodoListManager = null;
@@ -38,38 +34,33 @@ public class ToDoListManager {
 		this.context = context2;
 	}
 
-
-	public TodoList loadTodoList() throws ClassNotFoundException, IOException{
-		SharedPreferences settings = context.getSharedPreferences(prefFile, Context.MODE_PRIVATE);
-		String todolistdata = settings.getString(tlkey, "");
-		if (todolistdata.equals("")){
-			return new TodoList();
+	public TodoList loadTodoList(){
+		TodoList list = new TodoList();
+		try{
+		FileInputStream fis = context.openFileInput(FILENAME);
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		list = (TodoList) ois.readObject();
+		
 		}
-		else{
-			return TodoListFromString(todolistdata);
+		catch(Exception e){
+			Log.i("TODOLIST","ERROR CASTING");
+			e.printStackTrace();
 		}
+		return list;
 	}
 	
-	static public TodoList TodoListFromString(String todolistdata) throws ClassNotFoundException, IOException {
-		ByteArrayInputStream bi = new ByteArrayInputStream(Base64.decode(todolistdata, Base64.DEFAULT));
-		ObjectInputStream oi = new ObjectInputStream(bi);
-		return (TodoList) oi.readObject();
-	}
-	
-	static public String TodoListToString(TodoList tl) throws IOException {
-		ByteArrayOutputStream bo = new ByteArrayOutputStream();
-		ObjectOutputStream oo = new ObjectOutputStream(bo);
-		oo.writeObject(tl);
-		oo.close();
-		byte bytes[] = bo.toByteArray();
-		return Base64.encodeToString(bytes,Base64.DEFAULT);
-	}
 
-	public void saveTodoList(TodoList tl) throws IOException{
-	SharedPreferences settings = context.getSharedPreferences(prefFile, Context.MODE_PRIVATE);
-	Editor editor = settings.edit();
-	editor.putString(tlkey,TodoListToString(tl));
-	editor.commit();
+	public void saveTodoList(TodoList tl){
+		try{ FileOutputStream fos = context.openFileOutput(FILENAME,Context.MODE_PRIVATE);
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(tl);
+		fos.close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		
+		
+		}
 	}
 
 

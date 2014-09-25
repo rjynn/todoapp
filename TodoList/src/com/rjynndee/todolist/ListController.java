@@ -11,33 +11,20 @@ public class ListController {
 	
 	static public TodoList getTodoList(){
 		if (list == null){
-			try {
-				list = ToDoListManager.getManager().loadTodoList();
-				list.addListener(new Listener(){
-					@Override
-					public void update() {
-						saveToDoList();
-					}
-				});
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-				throw new RuntimeException("Could not deserialize todolist from todolist manager");
-			} catch (IOException e) {
-				e.printStackTrace();
-				throw new RuntimeException("Could not deserialize todolist from todolist manager");
-			}
+			list = ToDoListManager.getManager().loadTodoList();
+			list.addListener(new Listener(){
+				@Override
+				public void update() {
+					saveToDoList();
+				}
+			});
 		}
 		return list;
 	}
 	
 	
 	static public void saveToDoList(){
-		try {
-			ToDoListManager.getManager().saveTodoList(getTodoList());
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new RuntimeException("Could not deserialize todolist from todolist manager");
-		}
+		ToDoListManager.getManager().saveTodoList(getTodoList());
 	}
 	
 	

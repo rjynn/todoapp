@@ -13,8 +13,8 @@ public class Todos implements Serializable{
 	
 	public Todos(String todoname) {
 		this.TodoName = todoname;
-		this.TodoChecked = false;
-		this.TodoArchived = false;
+		this.TodoChecked = true;
+		this.TodoArchived = true;
 	}
 
 	public String getName() {
@@ -23,10 +23,8 @@ public class Todos implements Serializable{
 	
 	public void changeCheck(){
 		boolean bool = TodoChecked == false;
-		this.TodoChecked = bool;
-		
+		this.TodoChecked = bool;	
 	}
-
 	public boolean getchecked() {
 		return this.TodoChecked;
 	}
