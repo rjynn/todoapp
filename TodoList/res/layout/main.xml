@@ -23,7 +23,7 @@
         android:layout_alignParentRight="true"
         android:layout_weight="1.22"
         android:onClick="addTodoAction"
-        android:text="ADD" />
+        android:text="@string/add" />
 
     <EditText
         android:id="@+id/TodoEditText"
@@ -33,6 +33,7 @@
         android:layout_alignBottom="@+id/addTodoButtonButton"
         android:layout_alignParentLeft="true"
         android:layout_toLeftOf="@+id/addTodoButtonButton"
-        android:ems="10" />
+        android:ems="10"
+        android:hint="@string/Typehere" />
 
 </RelativeLayout>

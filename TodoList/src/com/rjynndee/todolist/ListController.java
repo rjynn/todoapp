@@ -2,11 +2,6 @@
 
 package com.rjynndee.todolist;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import android.util.Log;
-
 public class ListController {
 	
 	private static TodoList list = null;

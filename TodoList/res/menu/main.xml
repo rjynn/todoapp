@@ -1,8 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.rjynndee.todolist.MainActivity" >
-    <item android:id="@+id/viewArchivedItem" android:title="View Archived Items" android:onClick="goArchived"></item>
-    <item android:id="@+id/selectAllItem" android:title="Select multiple..." android:onClick="goSelectMultiple"></item>
-    <item android:id="@+id/viewSummaryItem" android:title="View summary statistics" android:onClick="showStats"></item>
+    <item android:id="@+id/viewArchivedItem" android:title="@string/ViewArchive" android:onClick="goArchived"></item>
+    <item android:id="@+id/selectAllItem" android:title="@string/SelectMultiiple" android:onClick="goSelectMultiple"></item>
+    <item android:id="@+id/viewSummaryItem" android:title="@string/viewSummary" android:onClick="showStats"></item>
 
 </menu>

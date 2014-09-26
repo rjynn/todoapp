@@ -7,8 +7,8 @@
         android:id="@+id/SelectMultipleListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/emailSelectButton"
-        android:layout_alignParentTop="true" >
+        android:layout_below="@+id/SelectMessage"
+        android:focusable="true" >
 
     </ListView>
 
@@ -19,7 +19,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:onClick="EmailSelectedItems"
-        android:text="Email Selected Items" />
+        android:text="@string/EmailSelected" />
 
     <Button
         android:id="@+id/selectAllButton"
@@ -28,6 +28,15 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:onClick="SelectAll"
-        android:text="Select All" />
+        android:text="@string/SelectAll" />
+
+    <TextView
+        android:id="@+id/SelectMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/emailwarning" />
 
 </RelativeLayout>

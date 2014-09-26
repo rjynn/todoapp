@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">TodoList</string>
+    <string name="app_name">rdejesus-notes</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="add">ADD</string>
     <string name="itemhint">Enter new item..</string>
     <string name="title_activity_list_to_dos">List To Dos</string>
     <string name="title_activity_select_multiple">SelectMultipleActivity</string>
+    <string name="archunarch">Archive/Unarchive</string>
+    <string name="emailwarning">Click on the item(not checkbox) to select..</string>
+    <string name="delete">Delete</string>
+    <string name="Email">Email</string>
+    <string name="EmailSelected">Email Selected Items</string>
+    <string name="SelectAll">Select All</string>
+    <string name="SelectMultiiple">Select multiple..</string>
+    <string name="Typehere">Type item here..</string>
+    <string name="ViewArchive">View Archived Items</string>
+    <string name="viewSummary">View summary statistics</string>
 
 </resources>

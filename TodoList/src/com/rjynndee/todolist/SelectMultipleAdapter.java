@@ -8,17 +8,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
+import com.rjynndee.rdejesusnotes.R;
 
 public class SelectMultipleAdapter extends ArrayAdapter<Todos>{
 	private Context context;
 	private ArrayList<Todos> list;
-	private ToDoListManager mymanager;
 	public SelectMultipleAdapter(Context context,int textViewResourceId, ArrayList<Todos> list, ToDoListManager manager){
 		super(context, textViewResourceId, list);
 		this.context = context;
 		this.list = list;
-		mymanager = manager;
 	}
 
 	private class ViewKeep{

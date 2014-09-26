@@ -1,8 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.rjynndee.todolist.ListToDosActivity" >
-    <item android:id="@+id/archiveDeleteHoldMenu" android:title="Delete"></item>
-    <item android:id="@+id/archiveemailHoldsMenu" android:title="Email"></item>
-    <item android:id="@+id/archivearchiveHoldsMenu" android:title="Archive/Unarchive"></item>
+    <item android:id="@+id/archiveDeleteHoldMenu" android:title="@string/delete"></item>
+    <item android:id="@+id/archiveemailHoldsMenu" android:title="@string/Email"></item>
+    <item android:id="@+id/archivearchiveHoldsMenu" android:title="@string/archunarch"></item>
 
 </menu>

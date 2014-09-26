@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.rjynndee.todolist.ListToDosActivity" >
-    <item android:id="@+id/archiveSelectMultipleMenu" android:title="Select multiple..." android:onClick="goSelectMultiple"></item><item android:id="@+id/archiveStatsMenu" android:onClick="showStats" android:title="View Statistics"></item>
+    <item android:id="@+id/archiveSelectMultipleMenu" android:title="@string/SelectMultiiple" android:onClick="goSelectMultiple"></item><item android:id="@+id/archiveStatsMenu" android:onClick="showStats" android:title="@string/viewSummary"></item>
     
 
 </menu>

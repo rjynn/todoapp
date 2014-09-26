@@ -20,6 +20,7 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+import com.rjynndee.rdejesusnotes.R;
 
 public class ListToDosActivity extends Activity {
 
