@@ -84,30 +84,24 @@ public class ListToDosActivity extends Activity {
 		inflater.inflate(R.menu.archiveholdsmenu,menu);
 	}
 	
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
+	public void goSelectMultiple(MenuItem menu){
+		Toast.makeText(this, "Select Multiple", Toast.LENGTH_SHORT).show();
+		Intent intent = new Intent(ListToDosActivity.this, SelectMultipleActivity.class);
+		startActivity(intent);
 	}
+	
 
 
-public boolean onContextItemSelected(MenuItem item){
-	AdapterView.AdapterContextMenuInfo myinfo = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
-	switch (item.getItemId()) {
-	case R.id.archiveDeleteHoldMenu:
-		final ListController ls = new ListController();
-		AlertDialog.Builder adb = new AlertDialog.Builder(ListToDosActivity.this);
-		adb.setMessage("Delete "+ls.getArchivedTodo(myinfo.position).toString()+"?");
-		adb.setCancelable(true);
-		final int fPosition = myinfo.position;
-		adb.setPositiveButton("Delete", new OnClickListener(){
+	public boolean onContextItemSelected(MenuItem item){
+		AdapterView.AdapterContextMenuInfo myinfo = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+		switch (item.getItemId()) {
+		case R.id.archiveDeleteHoldMenu:
+			final ListController ls = new ListController();
+			AlertDialog.Builder adb = new AlertDialog.Builder(ListToDosActivity.this);
+			adb.setMessage("Delete "+ls.getArchivedTodo(myinfo.position).toString()+"?");
+			adb.setCancelable(true);
+			final int fPosition = myinfo.position;
+			adb.setPositiveButton("Delete", new OnClickListener(){
 
 			@Override
 			public void onClick(DialogInterface arg0, int arg1) {

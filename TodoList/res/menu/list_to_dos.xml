@@ -1,12 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.rjynndee.todolist.ListToDosActivity" >
-
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
-    <item android:id="@+id/archiveStatsMenu" android:onClick="showStats" android:title="View Statistics"></item>
+    <item android:id="@+id/archiveSelectMultipleMenu" android:title="Select multiple..." android:onClick="goSelectMultiple"></item><item android:id="@+id/archiveStatsMenu" android:onClick="showStats" android:title="View Statistics"></item>
+    
 
 </menu>

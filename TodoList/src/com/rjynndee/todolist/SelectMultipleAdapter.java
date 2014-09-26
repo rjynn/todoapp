@@ -35,12 +35,14 @@ public class SelectMultipleAdapter extends ArrayAdapter<Todos>{
 			holder.TodoName = (TextView) convertView.findViewById(R.id.selectitemTextView);
 			holder.check = (CheckBox) convertView.findViewById(R.id.selectthischeckbox);
 			convertView.setTag(holder);
+			
 		}
 		else{
 			holder = (ViewKeep) convertView.getTag();
 		}
 		Todos todo = list.get(position);
 		holder.TodoName.setText(todo.getName());
+		holder.check.setChecked(false);
 		return convertView;
 		
 	}	

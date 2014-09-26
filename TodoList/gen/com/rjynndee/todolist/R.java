@@ -32,11 +32,11 @@ public final class R {
         public static final int ToDoCheckBox=0x7f080003;
         public static final int TodoEditText=0x7f080007;
         public static final int TodoListViewTextView=0x7f080004;
-        public static final int action_settings=0x7f080013;
         public static final int addTodoButtonButton=0x7f080006;
         public static final int archiveDeleteHoldMenu=0x7f08000d;
         public static final int archiveHoldsMenu=0x7f080012;
-        public static final int archiveStatsMenu=0x7f080014;
+        public static final int archiveSelectMultipleMenu=0x7f080014;
+        public static final int archiveStatsMenu=0x7f080013;
         public static final int archivearchiveHoldsMenu=0x7f08000f;
         public static final int archiveemailHoldsMenu=0x7f08000e;
         public static final int emailHoldsMenu=0x7f080011;
