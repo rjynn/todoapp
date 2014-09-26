@@ -20,6 +20,8 @@ import android.widget.ListView;
 public class SelectMultipleActivity extends Activity {
 
 	final ArrayList <Todos> emailinglist = new ArrayList<Todos>();
+	final ArrayList <Todos> list = new ArrayList<Todos>();
+	SelectMultipleAdapter adapter = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,10 +30,9 @@ public class SelectMultipleActivity extends Activity {
 		final ListView listview = (ListView) findViewById(R.id.SelectMultipleListView);
 		Collection<Todos> data = ListController.getTodoList().getTodos();
 		Collection<Todos> data2 = ListController.getTodoArchiveList().getTodos();
-		final ArrayList <Todos> list = new ArrayList<Todos>();
 		list.addAll(data);
 		list.addAll(data2);
-		final SelectMultipleAdapter adapter = new SelectMultipleAdapter(this, R.layout.selectcheckboxes_layout, list, ToDoListManager.getManager());
+		adapter = new SelectMultipleAdapter(this, R.layout.selectcheckboxes_layout, list, ToDoListManager.getManager());
 		listview.setAdapter(adapter);
 
 		
@@ -78,6 +79,8 @@ public class SelectMultipleActivity extends Activity {
 		intent.putExtra(Intent.EXTRA_TEXT, string);
 		try{
 			startActivity(Intent.createChooser(intent, "Emailing To do Items..."));
+			emailinglist.clear();
+			adapter.notifyDataSetChanged();
 		}
 		catch(Exception e){
 			AlertDialog.Builder alert = new AlertDialog.Builder(SelectMultipleActivity.this);
@@ -93,5 +96,38 @@ public class SelectMultipleActivity extends Activity {
 			alert.show();
 			
 		}
+	}
+	
+	public void SelectAll(View view){
+		emailinglist.addAll(list);
+		Intent intent = new Intent(Intent.ACTION_SEND);
+		intent.setType("message/rfc822");
+		String string = "TODOLIST:" +'\n'+'\n';
+		for (Todos todo : emailinglist){
+			string += todo.toString() + '\n';
+		}
+		intent.putExtra(Intent.EXTRA_TEXT, string);
+		try{
+			startActivity(Intent.createChooser(intent, "Emailing To do Items..."));
+			emailinglist.clear();
+			adapter.notifyDataSetChanged();
+		}
+		catch(Exception e){
+			AlertDialog.Builder alert = new AlertDialog.Builder(SelectMultipleActivity.this);
+			String message = "There are no email clients. Please Download one.";
+			alert.setMessage(message);
+			alert.setCancelable(true);
+			alert.setNegativeButton("OK", new OnClickListener(){
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {	
+				}
+			});
+			alert.show();
+			
+		}
+		
+		
+		
 	}
 }
