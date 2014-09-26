@@ -1,4 +1,6 @@
-//this controls and manipulates the class todolist when app is running
+/*this controls and manipulates the class todolist when app is running
+it uses the ListManager in order to save and load the lists that have been statically
+created to this controller so that it will always have those lists to access*/
 
 package com.rjynndee.todolist;
 
