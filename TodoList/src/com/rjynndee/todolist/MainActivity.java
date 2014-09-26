@@ -108,6 +108,11 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(MainActivity.this, ListToDosActivity.class);
 		startActivity(intent);
 	}
+	public void goSelectMultiple(MenuItem menu){
+		Toast.makeText(this, "Select Multiple", Toast.LENGTH_SHORT).show();
+		Intent intent = new Intent(MainActivity.this, SelectMultipleActivity.class);
+		startActivity(intent);
+	}
 	
 	public void showStats(MenuItem menu){
 		final ListController ls = new ListController();
@@ -199,9 +204,9 @@ public class MainActivity extends Activity {
 			String string = "TO DO LIST:" + '\n'+'\n' +ls2.getTodo(fPosition2).toString();
 			intent.putExtra(Intent.EXTRA_TEXT, string);
 			try{
-				startActivity(Intent.createChooser(intent, "Emailing Items..."));
+				startActivity(Intent.createChooser(intent, "Emailing To do Items..."));
 			}
-			catch(android.content.ActivityNotFoundException e){
+			catch(Exception e){
 				AlertDialog.Builder adb = new AlertDialog.Builder(MainActivity.this);
 				String message = "There are no email clients. Please Download one.";
 				adb.setMessage(message);

@@ -11,6 +11,7 @@ public class Todos implements Serializable{
 	protected String TodoName;
 	protected boolean TodoChecked;
 	protected boolean TodoArchived;
+	protected boolean email;
 	protected transient ArrayList<Listener> listeners = null; //dont need to save so transient
 	
 	
@@ -18,6 +19,7 @@ public class Todos implements Serializable{
 		this.TodoName = todoname;
 		this.TodoChecked = false;
 		this.TodoArchived = false;
+		this.email = false;
 	}
 
 	public String getName() {
@@ -40,6 +42,11 @@ public class Todos implements Serializable{
 	public void changeArchived() {
 		boolean bool = this.TodoArchived == false;
 		this.TodoArchived = bool;
+		notifyListeners();
+	}
+	public void changeemail() {
+		boolean bool = this.email == false;
+		this.email = bool;
 		notifyListeners();
 	}
 	

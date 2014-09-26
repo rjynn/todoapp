@@ -1,11 +1,7 @@
 package com.rjynndee.todolist;
 
 import java.util.ArrayList;
-import java.util.Collection;
-
-import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,41 +30,17 @@ public class SelectMultipleAdapter extends ArrayAdapter<Todos>{
 		ViewKeep holder = null;
 		if (convertView == null){
 			LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			convertView = vi.inflate(R.layout.checkboxes_layout, null);
+			convertView = vi.inflate(R.layout.selectcheckboxes_layout, null);
 			holder = new ViewKeep();
-			holder.TodoName = (TextView) convertView.findViewById(R.id.TodoListViewTextView);
-			holder.check = (CheckBox) convertView.findViewById(R.id.ToDoCheckBox);
+			holder.TodoName = (TextView) convertView.findViewById(R.id.selectitemTextView);
+			holder.check = (CheckBox) convertView.findViewById(R.id.selectthischeckbox);
 			convertView.setTag(holder);
 		}
 		else{
 			holder = (ViewKeep) convertView.getTag();
 		}
 		Todos todo = list.get(position);
-		todo.addListener(new Listener(){
-			public void update(){ 
-				TodoList newlist = new TodoList();
-				newlist.addAll(list);
-				mymanager.saveTodoList(newlist);//this will be called when listener is notified
-				
-			}
-		});
 		holder.TodoName.setText(todo.getName());
-		holder.check.setTag(todo);
-		holder.check.setChecked(todo.getchecked());
-
-		holder.check.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				final Todos clickedtodo = (Todos) v.getTag();
-				clickedtodo.changeCheck();
-				ListController.changedChecked();
-				Toast.makeText(context, "Changed Checked", Toast.LENGTH_SHORT).show();
-				
-			}
-		});
-		
-		
 		return convertView;
 		
 	}	
