@@ -147,11 +147,11 @@ public class MainActivity extends Activity {
 		switch (item.getItemId()) {
 		case R.id.DeleteHoldMenu:
 			final ListController ls = new ListController();
-			AlertDialog.Builder adb = new AlertDialog.Builder(MainActivity.this);
-			adb.setMessage("Delete "+ls.getTodo(myinfo.position).toString()+"?");
-			adb.setCancelable(true);
+			AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+			alert.setMessage("Delete "+ls.getTodo(myinfo.position).toString()+"?");
+			alert.setCancelable(true);
 			final int fPosition = myinfo.position;
-			adb.setPositiveButton("Delete", new OnClickListener(){
+			alert.setPositiveButton("Delete", new OnClickListener(){
 
 				@Override
 				public void onClick(DialogInterface arg0, int arg1) {
@@ -160,21 +160,21 @@ public class MainActivity extends Activity {
 					ls.removeToDo(todo);
 				}
 			});
-			adb.setNegativeButton("Cancel", new OnClickListener(){
+			alert.setNegativeButton("Cancel", new OnClickListener(){
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {	
 				}
 			});
-			adb.show();
+			alert.show();
 			break;
 		case R.id.archiveHoldsMenu:
 			final ListController ls1 = new ListController();
-			AlertDialog.Builder adb1 = new AlertDialog.Builder(MainActivity.this);
-			adb1.setMessage("Archive "+ls1.getTodo(myinfo.position).toString()+"?");
-			adb1.setCancelable(true);
+			AlertDialog.Builder alert1 = new AlertDialog.Builder(MainActivity.this);
+			alert1.setMessage("Archive "+ls1.getTodo(myinfo.position).toString()+"?");
+			alert1.setCancelable(true);
 			final int fPosition1 = myinfo.position;
-			adb1.setPositiveButton("Archive", new OnClickListener(){
+			alert1.setPositiveButton("Archive", new OnClickListener(){
 
 				@Override
 				public void onClick(DialogInterface arg0, int arg1) {
@@ -183,18 +183,43 @@ public class MainActivity extends Activity {
 					ls1.addToDoArchive(todo);
 				}
 			});
-			adb1.setNegativeButton("Cancel", new OnClickListener(){
+			alert1.setNegativeButton("Cancel", new OnClickListener(){
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {	
 				}
 			});
-			adb1.show();
-			return false;
+			alert1.show();
+			break;
+		case R.id.emailHoldsMenu:
+			final ListController ls2 = new ListController();
+			final int fPosition2 = myinfo.position;
+			Intent intent = new Intent(Intent.ACTION_SEND);
+			intent.setType("message/rfc822");
+			String string = "TO DO LIST:" + '\n'+'\n' +ls2.getTodo(fPosition2).toString();
+			intent.putExtra(Intent.EXTRA_TEXT, string);
+			try{
+				startActivity(Intent.createChooser(intent, "Emailing Items..."));
+			}
+			catch(android.content.ActivityNotFoundException e){
+				AlertDialog.Builder adb = new AlertDialog.Builder(MainActivity.this);
+				String message = "There are no email clients. Please Download one.";
+				adb.setMessage(message);
+				adb.setCancelable(true);
+				adb.setNegativeButton("OK", new OnClickListener(){
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {	
+					}
+				});
+				adb.show();
+				
+			}
 			
 		}
 		return true;
 	}
+	
 	
 }
 

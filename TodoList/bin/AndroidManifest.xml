@@ -26,6 +26,10 @@
             android:name=".ListToDosActivity"
             android:label="@string/title_activity_list_to_dos" >
         </activity>
+        <activity
+            android:name=".SelectMultipleActivity"
+            android:label="@string/title_activity_select_multiple" >
+        </activity>
     </application>
 
 </manifest>

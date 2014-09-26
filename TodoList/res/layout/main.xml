@@ -23,7 +23,7 @@
         android:layout_alignParentRight="true"
         android:layout_weight="1.22"
         android:onClick="addTodoAction"
-        android:text="Button" />
+        android:text="ADD" />
 
     <EditText
         android:id="@+id/TodoEditText"

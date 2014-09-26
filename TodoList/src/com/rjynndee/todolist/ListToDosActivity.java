@@ -8,6 +8,7 @@ import java.util.Collection;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -80,7 +81,7 @@ public class ListToDosActivity extends Activity {
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo){
 		super.onCreateContextMenu(menu,v,menuInfo);
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.holdsmenu,menu);
+		inflater.inflate(R.menu.archiveholdsmenu,menu);
 	}
 	
 	
@@ -100,7 +101,7 @@ public class ListToDosActivity extends Activity {
 public boolean onContextItemSelected(MenuItem item){
 	AdapterView.AdapterContextMenuInfo myinfo = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
 	switch (item.getItemId()) {
-	case R.id.DeleteHoldMenu:
+	case R.id.archiveDeleteHoldMenu:
 		final ListController ls = new ListController();
 		AlertDialog.Builder adb = new AlertDialog.Builder(ListToDosActivity.this);
 		adb.setMessage("Delete "+ls.getArchivedTodo(myinfo.position).toString()+"?");
@@ -123,7 +124,7 @@ public boolean onContextItemSelected(MenuItem item){
 		});
 		adb.show();
 		break;
-	case R.id.archiveHoldsMenu:
+	case R.id.archivearchiveHoldsMenu:
 		final ListController ls1 = new ListController();
 		AlertDialog.Builder adb1 = new AlertDialog.Builder(ListToDosActivity.this);
 		adb1.setMessage("Archive/Unarchive "+ls1.getArchivedTodo(myinfo.position).toString()+"?");
@@ -145,7 +146,31 @@ public boolean onContextItemSelected(MenuItem item){
 			}
 		});
 		adb1.show();
-		return false;
+		break;
+	case R.id.archiveemailHoldsMenu:
+		final ListController ls2 = new ListController();
+		final int fPosition2 = myinfo.position;
+		Intent intent = new Intent(Intent.ACTION_SEND);
+		intent.setType("message/rfc822");
+		String string = "TO DO LIST:" + '\n'+'\n' +ls2.getTodo(fPosition2).toString();
+		intent.putExtra(Intent.EXTRA_TEXT, string);
+		try{
+			startActivity(Intent.createChooser(intent, "Emailing Items..."));
+		}
+		catch(android.content.ActivityNotFoundException e){
+			AlertDialog.Builder adb111 = new AlertDialog.Builder(ListToDosActivity.this);
+			String message = "There are no email clients. Please Download one.";
+			adb111.setMessage(message);
+			adb111.setCancelable(true);
+			adb111.setNegativeButton("OK", new OnClickListener(){
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {	
+				}
+			});
+			adb111.show();
+			
+		}
 		
 	}
 	return true;
