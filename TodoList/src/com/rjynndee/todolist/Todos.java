@@ -1,3 +1,6 @@
+/*This class contains the elements todoitems that are the elements that comprises the 
+TodoList class. It has a listener in order to know when the item has been checked or not*/
+
 package com.rjynndee.todolist;
 
 import java.io.Serializable;
