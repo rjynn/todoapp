@@ -22,7 +22,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 import com.rjynndee.rdejesusnotes.R;
 
-public class ListToDosActivity extends Activity {
+public class ArchiveActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,7 @@ public class ListToDosActivity extends Activity {
 	
 	public void showStats(MenuItem menu){
 		final ListController ls = new ListController();
-		AlertDialog.Builder adb = new AlertDialog.Builder(ListToDosActivity.this);
+		AlertDialog.Builder adb = new AlertDialog.Builder(ArchiveActivity.this);
 		Statistics stats = ls.getStats();
 		String message = "Number of Active Items: " + Integer.toString(stats.TodoCount)+'\n'+
 				"       Checked: " + Integer.toString(stats.TodoChecked)+'\n'+
@@ -87,7 +87,7 @@ public class ListToDosActivity extends Activity {
 	
 	public void goSelectMultiple(MenuItem menu){
 		Toast.makeText(this, "Select Multiple", Toast.LENGTH_SHORT).show();
-		Intent intent = new Intent(ListToDosActivity.this, SelectMultipleActivity.class);
+		Intent intent = new Intent(ArchiveActivity.this, SelectMultipleActivity.class);
 		startActivity(intent);
 	}
 	
@@ -98,7 +98,7 @@ public class ListToDosActivity extends Activity {
 		switch (item.getItemId()) {
 		case R.id.archiveDeleteHoldMenu:
 			final ListController ls = new ListController();
-			AlertDialog.Builder adb = new AlertDialog.Builder(ListToDosActivity.this);
+			AlertDialog.Builder adb = new AlertDialog.Builder(ArchiveActivity.this);
 			adb.setMessage("Delete "+ls.getArchivedTodo(myinfo.position).toString()+"?");
 			adb.setCancelable(true);
 			final int fPosition = myinfo.position;
@@ -107,7 +107,7 @@ public class ListToDosActivity extends Activity {
 			@Override
 			public void onClick(DialogInterface arg0, int arg1) {
 				Todos todo = ls.getArchivedTodo(fPosition);
-				Toast.makeText(ListToDosActivity.this, "Deleted "+todo.toString(), Toast.LENGTH_SHORT).show();
+				Toast.makeText(ArchiveActivity.this, "Deleted "+todo.toString(), Toast.LENGTH_SHORT).show();
 				ls.removeArchiveToDo(todo);
 			}
 		});
@@ -121,7 +121,7 @@ public class ListToDosActivity extends Activity {
 		break;
 	case R.id.archivearchiveHoldsMenu:
 		final ListController ls1 = new ListController();
-		AlertDialog.Builder adb1 = new AlertDialog.Builder(ListToDosActivity.this);
+		AlertDialog.Builder adb1 = new AlertDialog.Builder(ArchiveActivity.this);
 		adb1.setMessage("Archive/Unarchive "+ls1.getArchivedTodo(myinfo.position).toString()+"?");
 		adb1.setCancelable(true);
 		final int fPosition1 = myinfo.position;
@@ -130,7 +130,7 @@ public class ListToDosActivity extends Activity {
 			@Override
 			public void onClick(DialogInterface arg0, int arg1) {
 				Todos todo = ls1.getArchivedTodo(fPosition1);
-				Toast.makeText(ListToDosActivity.this, "Archived/Unarchived "+todo.toString(), Toast.LENGTH_SHORT).show();
+				Toast.makeText(ArchiveActivity.this, "Archived/Unarchived "+todo.toString(), Toast.LENGTH_SHORT).show();
 				ls1.moveTodoDoFromArchive(todo);
 			}
 		});
@@ -153,7 +153,7 @@ public class ListToDosActivity extends Activity {
 			startActivity(Intent.createChooser(intent, "Emailing Items..."));
 		}
 		catch(android.content.ActivityNotFoundException e){
-			AlertDialog.Builder adb111 = new AlertDialog.Builder(ListToDosActivity.this);
+			AlertDialog.Builder adb111 = new AlertDialog.Builder(ArchiveActivity.this);
 			String message = "There are no email clients. Please Download one.";
 			adb111.setMessage(message);
 			adb111.setCancelable(true);

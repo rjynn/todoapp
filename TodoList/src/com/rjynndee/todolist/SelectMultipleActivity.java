@@ -18,8 +18,8 @@ import com.rjynndee.rdejesusnotes.R;
 
 public class SelectMultipleActivity extends Activity {
 
-	final ArrayList <Todos> emailinglist = new ArrayList<Todos>();
-	final ArrayList <Todos> list = new ArrayList<Todos>();
+	ArrayList <Todos> emailinglist = new ArrayList<Todos>();
+	ArrayList <Todos> list = new ArrayList<Todos>();
 	SelectMultipleAdapter adapter = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +53,6 @@ public class SelectMultipleActivity extends Activity {
 			}
 		});
 	}
-
-
-	
-	
 	public void EmailSelectedItems(View view){
 		
 		Intent intent = new Intent(Intent.ACTION_SEND);

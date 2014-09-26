@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.rjynndee.todolist.ListToDosActivity"
+            android:name="com.rjynndee.todolist.ArchiveActivity"
             android:label="@string/title_activity_list_to_dos" >
         </activity>
         <activity

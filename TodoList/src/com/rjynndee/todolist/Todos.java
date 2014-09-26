@@ -10,14 +10,12 @@ public class Todos implements Serializable{
 	private static final long serialVersionUID = 7974133207631838292L;
 	protected String TodoName;
 	protected boolean TodoChecked;
-	protected boolean TodoArchived;
 	protected transient ArrayList<Listener> listeners = null; //dont need to save so transient
 	
 	
 	public Todos(String todoname) {
 		this.TodoName = todoname;
 		this.TodoChecked = false;
-		this.TodoArchived = false;
 	}
 
 	public String getName() {
@@ -32,16 +30,6 @@ public class Todos implements Serializable{
 	public boolean getchecked() {
 		return this.TodoChecked;
 	}
-
-	public boolean getarchived() {
-		return this.TodoArchived;
-	}
-
-	/*public void changeArchived() {
-		boolean bool = this.TodoArchived == false;
-		this.TodoArchived = bool;
-		notifyListeners();
-	}*/
 
 	public String toString(){
 		return getName();

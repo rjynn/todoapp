@@ -46,7 +46,6 @@ public class TodoList implements Serializable{
 		}
 	}
 	
-	
 	public void addListener(Listener l) {
 		getListeners().add(l);
 		

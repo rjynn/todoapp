@@ -15,6 +15,7 @@ public class NewArchiveListAdapter extends ArrayAdapter<Todos>{
 	private Context context;
 	private ArrayList<Todos> list;
 	private ToDoListManager mymanager;
+	
 	public NewArchiveListAdapter(Context context,int textViewResourceId, ArrayList<Todos> list, ToDoListManager manager){
 		super(context, textViewResourceId, list);
 		this.context = context;

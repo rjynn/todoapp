@@ -89,7 +89,7 @@ public class MainActivity extends Activity {
 	
 	public void goArchived(MenuItem menu){
 		Toast.makeText(this, "Archives", Toast.LENGTH_SHORT).show();
-		Intent intent = new Intent(MainActivity.this, ListToDosActivity.class);
+		Intent intent = new Intent(MainActivity.this, ArchiveActivity.class);
 		startActivity(intent);
 	}
 	public void goSelectMultiple(MenuItem menu){

@@ -21,7 +21,6 @@ public class ListController {
 		return list;
 	}
 	
-	
 	static public TodoList getTodoArchiveList(){
 		if (archive == null){
 			archive = ToDoListManager.getManager().loadArchiveTodoList();
