@@ -11,7 +11,6 @@ public class Todos implements Serializable{
 	protected String TodoName;
 	protected boolean TodoChecked;
 	protected boolean TodoArchived;
-	protected boolean email;
 	protected transient ArrayList<Listener> listeners = null; //dont need to save so transient
 	
 	
@@ -19,7 +18,6 @@ public class Todos implements Serializable{
 		this.TodoName = todoname;
 		this.TodoChecked = false;
 		this.TodoArchived = false;
-		this.email = false;
 	}
 
 	public String getName() {
@@ -39,17 +37,12 @@ public class Todos implements Serializable{
 		return this.TodoArchived;
 	}
 
-	public void changeArchived() {
+	/*public void changeArchived() {
 		boolean bool = this.TodoArchived == false;
 		this.TodoArchived = bool;
 		notifyListeners();
-	}
-	public void changeemail() {
-		boolean bool = this.email == false;
-		this.email = bool;
-		notifyListeners();
-	}
-	
+	}*/
+
 	public String toString(){
 		return getName();
 	}
@@ -68,10 +61,7 @@ public class Todos implements Serializable{
 		return getName().equals(compareTodo.getName());
 	}
 	
-	public int hashCode(){
-		return ("Todo:"+getName()).hashCode();
-	}
-	
+
 	private ArrayList<Listener> getListeners(){
 		if (listeners == null){
 			listeners = new ArrayList<Listener>();

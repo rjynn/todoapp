@@ -8,7 +8,7 @@ import android.content.Context;
 import android.util.Log;
 
 
-public class ToDoListManager implements IDataManager {
+public class ToDoListManager {
 	private static final String FILENAME = "file.sav";
 	private static final String FILENAME2 = "file2.sav";
 	Context context;
