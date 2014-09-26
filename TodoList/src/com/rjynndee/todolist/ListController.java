@@ -2,11 +2,16 @@
 
 package com.rjynndee.todolist;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import android.util.Log;
+
 public class ListController {
 	
-	//lazy singleton
 	private static TodoList list = null;
 	private static TodoList archive = null;
+	private static Statistics stats = new Statistics();
 	
 	static public TodoList getTodoList(){
 		if (list == null){
@@ -21,17 +26,6 @@ public class ListController {
 		return list;
 	}
 	
-	private static class Statistics{
-		int TodoCount = 0;
-		int ArchiveCount =0;
-		int Checked = 0;
-		int Unchecked =0;
-		int TodoChecked = 0;
-		int TodoUnchecked =0;
-		int ArchiveChecked =0;
-		int ArchiveUnchecked =0;
-		int Total =0;
-	}
 	
 	static public TodoList getTodoArchiveList(){
 		if (archive == null){
@@ -44,6 +38,7 @@ public class ListController {
 			});
 		}
 		return archive;
+
 	}
 	
 	static public void saveArchiveToDoList(){
@@ -55,24 +50,29 @@ public class ListController {
 	public void addToDoArchive(Todos todos) {
 		getTodoList().removetodo(todos);
 		getTodoArchiveList().addtodo(todos);
+		recount();
 	}
 	
 
 	public void addToDo(Todos todos) {
 		getTodoList().addtodo(todos);
+		recount();
 	}
 	
 	public void removeToDo(Todos todos) {
 		getTodoList().removetodo(todos);
+		recount();
 	}
 	
 	public void removeArchiveToDo(Todos todos) {
 		getTodoArchiveList().removetodo(todos);
+		recount();
 	}
 	
 	public void moveTodoDoFromArchive(Todos todos) {
 		getTodoArchiveList().removetodo(todos);
 		getTodoList().addtodo(todos);
+		recount();
 	}
 	
 	public Todos getTodo(int position){
@@ -85,8 +85,31 @@ public class ListController {
 		
 	}
 	
-	public void recount(){
-		
+	public static void recount(){
+		stats.TodoCount = getTodoList().size();
+		stats.ArchiveCount = getTodoArchiveList().size();
+		for(int count=0; count< stats.TodoCount; count++){
+			if(getTodoList().get(count).getchecked() == true){
+				stats.Checked++;
+				stats.TodoChecked++;}
+			else{
+				stats.Unchecked++;
+				stats.TodoUnchecked++;
+			}
+		}
+		for(int count=0; count<stats.ArchiveCount; count++){
+			if(getTodoList().get(count).getchecked() == true){
+				stats.Checked++;
+				stats.ArchiveChecked++;}
+			else{
+				stats.Unchecked++;
+				stats.ArchiveUnchecked++;
+			}
+		}
+		stats.Total = (stats.TodoCount + stats.ArchiveCount);
 	}
 	
+	public Statistics getStats(){
+		return stats;
+	}
 }

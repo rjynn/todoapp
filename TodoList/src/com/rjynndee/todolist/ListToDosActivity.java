@@ -33,8 +33,7 @@ public class ListToDosActivity extends Activity {
 		final NewArchiveListAdapter TodoAdapter = new NewArchiveListAdapter(this,R.layout.checkboxes_layout,list, ToDoListManager.getManager());
 		listview.setAdapter(TodoAdapter);
 		registerForContextMenu(listview);
-		
-		
+		ListController.recount();
 		ListController.getTodoArchiveList().addListener(new Listener(){
 
 			@Override

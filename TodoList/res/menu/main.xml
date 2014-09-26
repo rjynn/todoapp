@@ -9,6 +9,6 @@
         android:title="@string/action_settings"/>
     <item android:id="@+id/viewArchivedItem" android:title="View Archived Items" android:onClick="goArchived"></item>
     <item android:id="@+id/selectAllItem" android:title="Select All" android:onClick="SelectAll"></item>
-    <item android:id="@+id/viewSummaryItem" android:title="View summary statistics"></item>
+    <item android:id="@+id/viewSummaryItem" android:title="View summary statistics" android:onClick="showStats"></item>
 
 </menu>

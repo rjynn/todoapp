@@ -60,8 +60,9 @@ public class MainActivity extends Activity {
 		listview.setAdapter(TodoAdapter); //this adapter controls the view of the listview
 		registerForContextMenu(listview);
 		
-		
+
 		//added observer to update the list when changes occur 
+		ListController.recount();
 		ListController.getTodoList().addListener(new Listener(){
 			public void update(){ //this will be called when listener is notified
 				list.clear();
@@ -106,6 +107,22 @@ public class MainActivity extends Activity {
 		Toast.makeText(this, "Archives", Toast.LENGTH_SHORT).show();
 		Intent intent = new Intent(MainActivity.this, ListToDosActivity.class);
 		startActivity(intent);
+	}
+	
+	public void showStats(MenuItem menu){
+		final ListController ls = new ListController();
+		AlertDialog.Builder adb = new AlertDialog.Builder(MainActivity.this);
+		Statistics stats = ls.getStats();
+		String message = "Number of Active Items: " + Integer.toString(stats.TodoCount);
+		adb.setMessage(message);
+		adb.setCancelable(true);
+		adb.setNegativeButton("OK", new OnClickListener(){
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {	
+			}
+		});
+		adb.show();
 	}
 	
 	public void addTodoAction(View view){
