@@ -1,4 +1,5 @@
-//this is the class of the list of to dos
+/*this is the class of the list of to dos that stores a list of each todo element in a list
+it has its own observer and notifies that for any changes made in the list*/
 package com.rjynndee.todolist;
 
 
