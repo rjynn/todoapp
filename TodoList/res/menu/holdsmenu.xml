@@ -3,6 +3,6 @@
     tools:context="com.rjynndee.todolist.MainActivity" >
     <item android:id="@+id/DeleteHoldMenu" android:title="Delete"></item>
     <item android:id="@+id/emailHoldsMenu" android:title="Email"></item>
-    <item android:id="@+id/archiveHoldsMenu" android:title="Archive"></item>
+    <item android:id="@+id/archiveHoldsMenu" android:title="Archive/Unarchive"></item>
 
 </menu>

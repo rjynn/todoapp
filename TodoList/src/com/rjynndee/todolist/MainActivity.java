@@ -28,6 +28,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -40,6 +41,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -47,15 +49,14 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.main);
 		
 		ToDoListManager.initManager(this.getApplicationContext());
 		
-		final ListView listview = (ListView) findViewById(R.id.listofTodosList);
+		final ListView listview = (ListView) findViewById(R.id.listofTodosListView);
 		Collection<Todos> Todoscoll = ListController.getTodoList().getTodos(); //need to specify what is in the listview
 		final ArrayList<Todos> list = new ArrayList<Todos>(Todoscoll);
 		final NewListAdapter TodoAdapter = new NewListAdapter(this,R.layout.checkboxes_layout, list, ToDoListManager.getManager());
-		//final ArrayAdapter<Todos> TodoAdapter = new ArrayAdapter<Todos>(this, android.R.layout.simple_list_item_1,list);
 		listview.setAdapter(TodoAdapter); //this adapter controls the view of the listview
 		registerForContextMenu(listview);
 		
@@ -70,36 +71,6 @@ public class MainActivity extends Activity {
 			}
 		});
 		
-		/*listview.setOnItemLongClickListener(new OnItemLongClickListener(){
-			@Override
-			public boolean onItemLongClick(AdapterView<?> adapterView, View view,	//would like to change this to menu
-					int position, long id) { /*
-				AlertDialog.Builder adb = new AlertDialog.Builder(MainActivity.this);
-				adb.setMessage("Delete "+list.get(position).toString()+"?");
-				adb.setCancelable(true);
-				final int finalPosition = position;
-				adb.setPositiveButton("Delete", new OnClickListener(){
-
-					@Override
-					public void onClick(DialogInterface arg0, int arg1) {
-						Todos todo = list.get(finalPosition);
-						Toast.makeText(MainActivity.this, "Deleted "+list.get(finalPosition).toString(), Toast.LENGTH_SHORT).show();
-						ListController.getTodoList().removetodo(todo);
-					}
-				});
-				adb.setNegativeButton("Cancel", new OnClickListener(){
-
-					@Override
-					public void onClick(DialogInterface dialog, int which) {	
-					}
-				});
-				adb.show();
-				return false;
-				getMenuInflater().inflate(R.menu.holdsmenu, menu);
-				return false;
-			}
-			
-		});*/
 	}
 
 	@Override
@@ -140,23 +111,65 @@ public class MainActivity extends Activity {
 	public void addTodoAction(View view){
 		Toast.makeText(this, "Added an item", Toast.LENGTH_SHORT).show();
 		ListController ls = new ListController();
-		EditText textView = (EditText) findViewById(R.id.AddNewToDoTextField);
+		EditText textView = (EditText) findViewById(R.id.TodoEditText);
 		ls.addToDo(new Todos(textView.getText().toString()));
 		textView.setText(null);
 	}
 	
 	public boolean onContextItemSelected(MenuItem item){
-		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-		
+		AdapterView.AdapterContextMenuInfo myinfo = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
 		switch (item.getItemId()) {
 		case R.id.DeleteHoldMenu:
-			Toast.makeText(this, Integer.toString(info.position), Toast.LENGTH_SHORT).show();
-			return true;
+			final ListController ls = new ListController();
+			AlertDialog.Builder adb = new AlertDialog.Builder(MainActivity.this);
+			adb.setMessage("Delete "+ls.getTodo(myinfo.position).toString()+"?");
+			adb.setCancelable(true);
+			final int fPosition = myinfo.position;
+			adb.setPositiveButton("Delete", new OnClickListener(){
+
+				@Override
+				public void onClick(DialogInterface arg0, int arg1) {
+					Todos todo = ls.getTodo(fPosition);
+					Toast.makeText(MainActivity.this, "Deleted "+todo.toString(), Toast.LENGTH_SHORT).show();
+					ls.removeToDo(todo);
+				}
+			});
+			adb.setNegativeButton("Cancel", new OnClickListener(){
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {	
+				}
+			});
+			adb.show();
+			break;
+		case R.id.archiveHoldsMenu:
+			final ListController ls1 = new ListController();
+			AlertDialog.Builder adb1 = new AlertDialog.Builder(MainActivity.this);
+			adb1.setMessage("Archive "+ls1.getTodo(myinfo.position).toString()+"?");
+			adb1.setCancelable(true);
+			final int fPosition1 = myinfo.position;
+			adb1.setPositiveButton("Archive", new OnClickListener(){
+
+				@Override
+				public void onClick(DialogInterface arg0, int arg1) {
+					Todos todo = ls1.getTodo(fPosition1);
+					Toast.makeText(MainActivity.this, "Archived "+ls1.getTodo(fPosition1).toString(), Toast.LENGTH_SHORT).show();
+					ls1.addToDoArchive(todo);
+				}
+			});
+			adb1.setNegativeButton("Cancel", new OnClickListener(){
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {	
+				}
+			});
+			adb1.show();
+			return false;
+			
 		}
 		return true;
 	}
-
-
+	
 }
 
 

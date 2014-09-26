@@ -1,9 +1,6 @@
 package com.rjynndee.todolist;
 
 import java.util.ArrayList;
-import java.util.Collection;
-
-import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,11 +11,11 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class NewListAdapter extends ArrayAdapter<Todos>{
+public class NewArchiveListAdapter extends ArrayAdapter<Todos>{
 	private Context context;
 	private ArrayList<Todos> list;
 	private ToDoListManager mymanager;
-	public NewListAdapter(Context context,int textViewResourceId, ArrayList<Todos> list, ToDoListManager manager){
+	public NewArchiveListAdapter(Context context,int textViewResourceId, ArrayList<Todos> list, ToDoListManager manager){
 		super(context, textViewResourceId, list);
 		this.context = context;
 		this.list = list;
@@ -50,7 +47,7 @@ public class NewListAdapter extends ArrayAdapter<Todos>{
 				Log.v("CONTEXT", context.toString());
 				TodoList newlist = new TodoList();
 				newlist.addAll(list);
-				mymanager.saveTodoList(newlist);//this will be called when listener is notified
+				mymanager.saveArchiveTodoList(newlist);//this will be called when listener is notified
 				
 			}
 		});

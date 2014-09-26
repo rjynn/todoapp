@@ -68,11 +68,7 @@ public class TodoList implements Serializable{
 	}
 
 	public Todos get(int position) {
-		return get(position);
+		return list.get(position);
 	}
 	
-	public void changeChecked(Todos todo){
-		todo.changeCheck();
-		notifyListeners();
-	}
 }

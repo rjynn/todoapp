@@ -10,6 +10,7 @@ import android.util.Log;
 
 public class ToDoListManager implements IDataManager {
 	private static final String FILENAME = "file.sav";
+	private static final String FILENAME2 = "file2.sav";
 	Context context;
 	
 	static private ToDoListManager TodoListManager = null;
@@ -49,6 +50,20 @@ public class ToDoListManager implements IDataManager {
 		return list;
 	}
 	
+	public TodoList loadArchiveTodoList(){
+		TodoList list = new TodoList();
+		try{
+		FileInputStream fis = context.openFileInput(FILENAME2);
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		list = (TodoList) ois.readObject();
+		
+		}
+		catch(Exception e){
+			Log.i("TODOLIST","ERROR CASTING");
+			e.printStackTrace();
+		}
+		return list;
+	}
 
 	public void saveTodoList(TodoList tl){
 		try{ FileOutputStream fos = context.openFileOutput(FILENAME,Context.MODE_PRIVATE);
@@ -59,9 +74,22 @@ public class ToDoListManager implements IDataManager {
 		catch(Exception e){
 			e.printStackTrace();
 		
-		
 		}
 	}
+		
+		public void saveArchiveTodoList(TodoList tl){
+			try{ FileOutputStream fos = context.openFileOutput(FILENAME2,Context.MODE_PRIVATE);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(tl);
+			fos.close();
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			
+			
+			}
+	}
+
 
 
 

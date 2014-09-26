@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:onClick="addTodoAction"
+    android:orientation="vertical" >
+
+    <ListView
+        android:id="@+id/listofTodosListView"
+        android:layout_width="match_parent"
+        android:layout_height="378dp"
+        android:layout_above="@+id/addTodoButtonButton"
+        android:layout_alignParentTop="true"
+        android:layout_weight="1.22" >
+
+    </ListView>
+
+    <Button
+        android:id="@+id/addTodoButtonButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_weight="1.22"
+        android:onClick="addTodoAction"
+        android:text="Button" />
+
+    <EditText
+        android:id="@+id/TodoEditText"
+        android:layout_width="199dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/addTodoButtonButton"
+        android:layout_alignBottom="@+id/addTodoButtonButton"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/addTodoButtonButton"
+        android:ems="10" />
+
+</RelativeLayout>
