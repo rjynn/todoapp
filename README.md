@@ -11,5 +11,7 @@ To delete, email or move to archives a single item in the list, click and hold t
 
 In multiple selections, clicking on the checkbox will do nothing, but clicking on the item will select the item for emailing.
 
+Sources Cited
 ==========
-
+implementation of listener and listmanager was based on abram hindle's code student-picker.
+implementation of the customadapters were based on information taken from http://androidadapternotifiydatasetchanged.blogspot.in/
