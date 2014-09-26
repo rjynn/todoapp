@@ -25,29 +25,27 @@ public class NewListAdapter extends ArrayAdapter<Todos>{
 		mymanager = manager;
 	}
 
-	private class ViewHolder{
+	private class ViewKeep{
 		TextView TodoName;
 		CheckBox check;
 	}
 	
 	public View getView(int position, View convertView, ViewGroup parent){
-		ViewHolder holder = null;
-		Log.v("--ConvertView", String.valueOf(position));
+		ViewKeep holder = null;
 		if (convertView == null){
 			LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			convertView = vi.inflate(R.layout.checkboxes_layout, null);
-			holder = new ViewHolder();
+			holder = new ViewKeep();
 			holder.TodoName = (TextView) convertView.findViewById(R.id.TodoListViewTextView);
 			holder.check = (CheckBox) convertView.findViewById(R.id.ToDoCheckBox);
 			convertView.setTag(holder);
 		}
 		else{
-			holder = (ViewHolder) convertView.getTag();
+			holder = (ViewKeep) convertView.getTag();
 		}
 		Todos todo = list.get(position);
 		todo.addListener(new Listener(){
 			public void update(){ 
-				Log.v("CONTEXT", context.toString());
 				TodoList newlist = new TodoList();
 				newlist.addAll(list);
 				mymanager.saveTodoList(newlist);//this will be called when listener is notified
@@ -64,7 +62,9 @@ public class NewListAdapter extends ArrayAdapter<Todos>{
 			public void onClick(View v) {
 				final Todos clickedtodo = (Todos) v.getTag();
 				clickedtodo.changeCheck();
+				ListController.changedChecked();
 				Toast.makeText(context, "Changed Checked", Toast.LENGTH_SHORT).show();
+				
 			}
 		});
 		

@@ -53,6 +53,9 @@ public class ListController {
 		recount();
 	}
 	
+	public static void changedChecked(){
+		recount();
+	}
 
 	public void addToDo(Todos todos) {
 		getTodoList().addtodo(todos);
@@ -88,6 +91,12 @@ public class ListController {
 	public static void recount(){
 		stats.TodoCount = getTodoList().size();
 		stats.ArchiveCount = getTodoArchiveList().size();
+		stats.Checked = 0;
+		stats.Unchecked =0;
+		stats.TodoChecked = 0;
+		stats.TodoUnchecked =0;
+		stats.ArchiveChecked =0;
+		stats.ArchiveUnchecked =0;
 		for(int count=0; count< stats.TodoCount; count++){
 			if(getTodoList().get(count).getchecked() == true){
 				stats.Checked++;
@@ -98,7 +107,7 @@ public class ListController {
 			}
 		}
 		for(int count=0; count<stats.ArchiveCount; count++){
-			if(getTodoList().get(count).getchecked() == true){
+			if(getTodoArchiveList().get(count).getchecked() == true){
 				stats.Checked++;
 				stats.ArchiveChecked++;}
 			else{

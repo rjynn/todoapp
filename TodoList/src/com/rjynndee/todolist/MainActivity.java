@@ -113,7 +113,16 @@ public class MainActivity extends Activity {
 		final ListController ls = new ListController();
 		AlertDialog.Builder adb = new AlertDialog.Builder(MainActivity.this);
 		Statistics stats = ls.getStats();
-		String message = "Number of Active Items: " + Integer.toString(stats.TodoCount);
+		String message = "Number of Active Items: " + Integer.toString(stats.TodoCount)+'\n'+
+				"       Checked: " + Integer.toString(stats.TodoChecked)+'\n'+
+				"       Unchecked: " + Integer.toString(stats.TodoUnchecked)+'\n'+'\n'+
+				"Number of Archived Items: " + Integer.toString(stats.ArchiveCount)+'\n'+
+				"       Checked: " + Integer.toString(stats.ArchiveChecked)+'\n' +
+				"       Unchecked:" + Integer.toString(stats.ArchiveUnchecked)+'\n' +
+				"_____________________________" +'\n' +
+				"Total Items: " + Integer.toString(stats.Total)+'\n'+
+				"      Checked:" + Integer.toString(stats.Checked)+'\n'+
+				"      Unchecked: " + Integer.toString(stats.Unchecked);
 		adb.setMessage(message);
 		adb.setCancelable(true);
 		adb.setNegativeButton("OK", new OnClickListener(){
