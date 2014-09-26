@@ -152,7 +152,7 @@ public boolean onContextItemSelected(MenuItem item){
 		final int fPosition2 = myinfo.position;
 		Intent intent = new Intent(Intent.ACTION_SEND);
 		intent.setType("message/rfc822");
-		String string = "TO DO LIST:" + '\n'+'\n' +ls2.getTodo(fPosition2).toString();
+		String string = "TO DO LIST:" + '\n'+'\n' +ls2.getArchivedTodo(fPosition2).toString();
 		intent.putExtra(Intent.EXTRA_TEXT, string);
 		try{
 			startActivity(Intent.createChooser(intent, "Emailing Items..."));
