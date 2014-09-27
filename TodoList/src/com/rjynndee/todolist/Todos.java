@@ -39,7 +39,7 @@ public class Todos implements Serializable{
 	public String toString(){
 		return getName();
 	}
-	public boolean equals(Object compareTodo){
+	public boolean equals(Object compareTodo){	//this is used to compare object with this object 
 		if (compareTodo != null && compareTodo.getClass()== this.getClass()){
 			return this.equals((Todos)compareTodo);
 		}
@@ -48,7 +48,7 @@ public class Todos implements Serializable{
 		}
 	}
 	
-	public boolean equals(Todos compareTodo){
+	public boolean equals(Todos compareTodo){	//different compare to comare 2 to-dos
 		if(compareTodo == null){
 			return false;}
 		return getName().equals(compareTodo.getName());
