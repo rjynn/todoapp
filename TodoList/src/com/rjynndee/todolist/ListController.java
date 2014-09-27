@@ -1,6 +1,8 @@
-/*this controls and manipulates the class todolist when app is running
-it uses the ListManager in order to save and load the lists that have been statically
-created to this controller so that it will always have those lists to access*/
+/*This Class controls and holds all the data that is transferred to and from different lists in the application. It deals
+ * with any manipulation of the lists like add, delete, or moving from one list to another. It contains a statistics class that holds the metadata
+ * of the class itself. The Lists have been implemented statically in order to keep the information
+ * throughout the application, however issues will occur if another list is wanted for future development. May have to
+ * figure out a way to implement without the static lists */
 
 package com.rjynndee.todolist;
 
@@ -9,14 +11,15 @@ public class ListController {
 	private static TodoList list = null;
 	private static TodoList archive = null;
 	private static Statistics stats = new Statistics();
+	private static ListManager manager = ListManager.getManager();
 	
 	static public TodoList getTodoList(){
 		if (list == null){
-			list = ToDoListManager.getManager().loadTodoList();
+			list = manager.loadTodoList();
 			list.addListener(new Listener(){
 				@Override
 				public void update() {
-					saveToDoList();
+					manager.saveTodoList(list);;
 				}
 			});
 		}
@@ -25,74 +28,59 @@ public class ListController {
 	
 	static public TodoList getTodoArchiveList(){
 		if (archive == null){
-			archive = ToDoListManager.getManager().loadArchiveTodoList();
+			archive = manager.loadArchiveTodoList();
 			archive.addListener(new Listener(){
 				@Override
 				public void update() {
-					saveArchiveToDoList();
+					manager.saveArchiveTodoList(archive);;
 				}
 			});
 		}
 		return archive;
-
 	}
 	
-	static public void saveArchiveToDoList(){
-		ToDoListManager.getManager().saveArchiveTodoList(getTodoArchiveList());
-	}
-	static public void saveToDoList(){
-		ToDoListManager.getManager().saveTodoList(getTodoList());
-	}
 	public void addToDoArchive(Todos todos) {
-		getTodoList().removetodo(todos);
-		getTodoArchiveList().addtodo(todos);
+		list.removetodo(todos);
+		archive.addtodo(todos);
 		recount();
 	}
 	
-	public static void changedChecked(){
-		recount();
-	}
 
 	public void addToDo(Todos todos) {
-		getTodoList().addtodo(todos);
+		list.addtodo(todos);
 		recount();
 	}
 	
 	public void removeToDo(Todos todos) {
-		getTodoList().removetodo(todos);
+		list.removetodo(todos);
 		recount();
 	}
 	
 	public void removeArchiveToDo(Todos todos) {
-		getTodoArchiveList().removetodo(todos);
+		archive.removetodo(todos);
 		recount();
 	}
 	
 	public void moveTodoDoFromArchive(Todos todos) {
-		getTodoArchiveList().removetodo(todos);
-		getTodoList().addtodo(todos);
+		archive.removetodo(todos);
+		list.addtodo(todos);
 		recount();
 	}
 	
 	public Todos getTodo(int position){
-		return getTodoList().get(position);
+		return list.get(position);
 		
 	}
 	
 	public Todos getArchivedTodo(int position){
-		return getTodoArchiveList().get(position);
+		return archive.get(position);
 		
 	}
 	
 	public static void recount(){
+		stats.resetStats();
 		stats.TodoCount = getTodoList().size();
 		stats.ArchiveCount = getTodoArchiveList().size();
-		stats.Checked = 0;
-		stats.Unchecked =0;
-		stats.TodoChecked = 0;
-		stats.TodoUnchecked =0;
-		stats.ArchiveChecked =0;
-		stats.ArchiveUnchecked =0;
 		for(int count=0; count< stats.TodoCount; count++){
 			if(getTodoList().get(count).getchecked() == true){
 				stats.Checked++;

@@ -1,3 +1,4 @@
+/*this allows the listview in the select multiple to be set in a certain way */
 package com.rjynndee.todolist;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import com.rjynndee.rdejesusnotes.R;
 public class SelectMultipleAdapter extends ArrayAdapter<Todos>{
 	private Context context;
 	private ArrayList<Todos> list;
-	public SelectMultipleAdapter(Context context,int textViewResourceId, ArrayList<Todos> list, ToDoListManager manager){
+	public SelectMultipleAdapter(Context context,int textViewResourceId, ArrayList<Todos> list, ListManager manager){
 		super(context, textViewResourceId, list);
 		this.context = context;
 		this.list = list;

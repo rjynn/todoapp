@@ -1,5 +1,7 @@
-/*This class contains the elements todoitems that are the elements that comprises the 
-TodoList class. It has a listener in order to know when the item has been checked or not*/
+/*This class describes the todo list items that are the elements that comprises the 
+TodoList class. It has a listener in order to know when the item has been checked off or not
+and it has only one setter class called changeCheck() which will change the boolean value when an item is either checked or not.
+These are typically not to be edited since there is no editing in this application so there are no setters for the name attribute in this class*/
 
 package com.rjynndee.todolist;
 

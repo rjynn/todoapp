@@ -1,4 +1,6 @@
-//should really be changing this to archive activity
+/*This Activity Deals with the Archives UserInterface. It presents the list of the items that have been archived
+and allows the user to delete, email or move it back to the active list. Users cannot touch the check boxes here
+they must be sent to the active list then back */
 
 package com.rjynndee.todolist;
 
@@ -28,11 +30,11 @@ public class ArchiveActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.archived);
-		ToDoListManager.initManager(this.getApplicationContext());
+		ListManager.initManager(this.getApplicationContext());
 		final ListView listview = (ListView) findViewById(R.id.listofTodosArchiveList);
 		Collection<Todos> Todoscoll = ListController.getTodoArchiveList().getTodos();
 		final ArrayList<Todos> list = new ArrayList<Todos>(Todoscoll);
-		final NewArchiveListAdapter TodoAdapter = new NewArchiveListAdapter(this,R.layout.checkboxes_layout,list, ToDoListManager.getManager());
+		final NewArchiveListAdapter TodoAdapter = new NewArchiveListAdapter(this,R.layout.checkboxes_layout,list, ListManager.getManager());
 		listview.setAdapter(TodoAdapter);
 		registerForContextMenu(listview);
 		ListController.recount();
@@ -91,8 +93,6 @@ public class ArchiveActivity extends Activity {
 		startActivity(intent);
 	}
 	
-
-
 	public boolean onContextItemSelected(MenuItem item){
 		AdapterView.AdapterContextMenuInfo myinfo = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
 		switch (item.getItemId()) {

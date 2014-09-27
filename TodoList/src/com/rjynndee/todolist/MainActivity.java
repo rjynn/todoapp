@@ -1,4 +1,7 @@
 /*ToDoList: Allows user to create a list of items for reminders
+ * and allow that list to be manipulated by removing,adding,and moving items to an 
+ * archive list.
+ * 
     Copyright (C) 2014  Ruby De Jesus rdejesus@ualberta.ca
 
     This program is free software: you can redistribute it and/or modify
@@ -47,12 +50,12 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		
-		ToDoListManager.initManager(this.getApplicationContext());
+		ListManager.initManager(this.getApplicationContext());
 		
 		final ListView listview = (ListView) findViewById(R.id.listofTodosListView);
 		Collection<Todos> Todoscoll = ListController.getTodoList().getTodos(); //need to specify what is in the listview
 		final ArrayList<Todos> list = new ArrayList<Todos>(Todoscoll);
-		final NewListAdapter TodoAdapter = new NewListAdapter(this,R.layout.checkboxes_layout, list, ToDoListManager.getManager());
+		final NewListAdapter TodoAdapter = new NewListAdapter(this,R.layout.checkboxes_layout, list, ListManager.getManager());
 		listview.setAdapter(TodoAdapter); //this adapter controls the view of the listview
 		registerForContextMenu(listview);
 		

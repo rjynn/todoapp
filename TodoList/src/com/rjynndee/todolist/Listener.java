@@ -1,4 +1,4 @@
-//this is an interface that acts as an observer to call the function update.
+//this is an interface that acts as a way to update information when a certain event occurs
 
 package com.rjynndee.todolist;
 

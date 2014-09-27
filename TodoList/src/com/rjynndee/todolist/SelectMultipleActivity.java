@@ -1,3 +1,5 @@
+/*this activity is for the select multiple items to email UI. Most work is done within this activity itself because
+ * emailing does not alter the data or application and does not need to be rememebered*/
 package com.rjynndee.todolist;
 
 import java.util.ArrayList;
@@ -25,13 +27,13 @@ public class SelectMultipleActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.selectmultiplelayout);
-		ToDoListManager.initManager(this.getApplicationContext());
+		ListManager.initManager(this.getApplicationContext());
 		final ListView listview = (ListView) findViewById(R.id.SelectMultipleListView);
 		Collection<Todos> data = ListController.getTodoList().getTodos();
 		Collection<Todos> data2 = ListController.getTodoArchiveList().getTodos();
 		list.addAll(data);
 		list.addAll(data2);
-		adapter = new SelectMultipleAdapter(this, R.layout.selectcheckboxes_layout, list, ToDoListManager.getManager());
+		adapter = new SelectMultipleAdapter(this, R.layout.selectcheckboxes_layout, list, ListManager.getManager());
 		listview.setAdapter(adapter);
 
 		

@@ -1,5 +1,5 @@
-/*this is the class of the list of to dos that stores a list of each todo element in a list
-it has its own observer and notifies that for any changes made in the list*/
+/*this is the class that holds the To do items in order for the user to manipulate them.
+ * This class only manipulates itself and is processed and called upon the ListController to do work*/
 package com.rjynndee.todolist;
 
 

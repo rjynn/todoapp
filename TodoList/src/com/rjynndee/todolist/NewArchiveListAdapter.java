@@ -1,3 +1,5 @@
+/*this allows the list view in archives to display proper format */
+
 package com.rjynndee.todolist;
 
 import java.util.ArrayList;
@@ -14,9 +16,9 @@ import com.rjynndee.rdejesusnotes.R;
 public class NewArchiveListAdapter extends ArrayAdapter<Todos>{
 	private Context context;
 	private ArrayList<Todos> list;
-	private ToDoListManager mymanager;
+	private ListManager mymanager;
 	
-	public NewArchiveListAdapter(Context context,int textViewResourceId, ArrayList<Todos> list, ToDoListManager manager){
+	public NewArchiveListAdapter(Context context,int textViewResourceId, ArrayList<Todos> list, ListManager manager){
 		super(context, textViewResourceId, list);
 		this.context = context;
 		this.list = list;
@@ -60,7 +62,7 @@ public class NewArchiveListAdapter extends ArrayAdapter<Todos>{
 			public void onClick(View v) {
 				final Todos clickedtodo = (Todos) v.getTag();
 				clickedtodo.changeCheck();
-				ListController.changedChecked();
+				ListController.recount();
 				Toast.makeText(context, "Changed Checked", Toast.LENGTH_SHORT).show();
 			}
 		});
