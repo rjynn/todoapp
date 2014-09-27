@@ -13,7 +13,7 @@ public class ListController {
 	private static Statistics stats = new Statistics();
 	private static ListManager manager = ListManager.getManager();
 	
-	static public TodoList getTodoList(){
+	static public TodoList getTodoList(){		//returns stored todolist
 		if (list == null){
 			list = manager.loadTodoList();
 			list.addListener(new Listener(){
@@ -26,7 +26,7 @@ public class ListController {
 		return list;
 	}
 	
-	static public TodoList getTodoArchiveList(){
+	static public TodoList getTodoArchiveList(){		//returns stored archive list
 		if (archive == null){
 			archive = manager.loadArchiveTodoList();
 			archive.addListener(new Listener(){
@@ -77,12 +77,12 @@ public class ListController {
 		
 	}
 	
-	public static void recount(){
+	public static void recount(){		//this counts the elements in each list
 		stats.resetStats();
 		stats.TodoCount = getTodoList().size();
 		stats.ArchiveCount = getTodoArchiveList().size();
 		for(int count=0; count< stats.TodoCount; count++){
-			if(getTodoList().get(count).getchecked() == true){
+			if(getTodoList().get(count).getchecked() == true){	//loop to count checked items
 				stats.Checked++;
 				stats.TodoChecked++;}
 			else{
