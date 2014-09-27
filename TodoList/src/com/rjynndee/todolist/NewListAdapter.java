@@ -23,7 +23,7 @@ public class NewListAdapter extends ArrayAdapter<Todos>{
 		mymanager = manager;
 	}
 
-	private class ViewKeep{
+	private class ViewKeep{		//will serve to hold the id values 
 		TextView TodoName;
 		CheckBox check;
 	}
@@ -54,7 +54,7 @@ public class NewListAdapter extends ArrayAdapter<Todos>{
 		holder.check.setTag(todo);
 		holder.check.setChecked(todo.getchecked());
 
-		holder.check.setOnClickListener(new View.OnClickListener() {
+		holder.check.setOnClickListener(new View.OnClickListener() {	//listener to check if checkboxes are changed
 			
 			@Override
 			public void onClick(View v) {
