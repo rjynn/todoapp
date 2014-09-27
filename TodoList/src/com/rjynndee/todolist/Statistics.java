@@ -6,15 +6,15 @@
 package com.rjynndee.todolist;
 
 public class Statistics{
-		int TodoCount;
-		int ArchiveCount;
-		int Checked;
-		int Unchecked;
-		int TodoChecked;
-		int TodoUnchecked;
-		int ArchiveChecked;
-		int ArchiveUnchecked;
-		int Total;
+		public int TodoCount;
+		public int ArchiveCount;
+		public int Checked;
+		public int Unchecked;
+		public int TodoChecked;
+		public int TodoUnchecked;
+		public int ArchiveChecked;
+		public int ArchiveUnchecked;
+		public int Total;
 		
 		public Statistics(){
 			TodoCount = 0;
