@@ -15,7 +15,8 @@ In multiple selections, clicking on the checkbox will do nothing, but clicking o
 
 Sources Cited
 ==========
--The listener interface, the dialogue boxes, and general flow of the activities were inspired by Abram Hindle's program, student-picker.
--Implementation of the customadapters to allow for checkbox and textview layouts in the listview were based on information taken from the code posted by Rakhita(http://stackoverflow.com/users/788677/rakhita) and edited by Glenn Bech on http://stackoverflow.com/questions/8166497/custom-adapter-for-list-view.
--The contextmenu was inspired by Clarence posted on http://www.programering.com/a/MTOzIDNwATQ.html.
--API for using gson was based on lab work and lab lecture.
+-The listener interface, the dialogue boxes, and general flow of the activities were inspired by Abram Hindle's program, student-picker.<br>
+-Implementation of the customadapters to allow for checkbox and textview layouts in the listview were based on information taken from the code posted by Rakhita(http://stackoverflow.com/users/788677/rakhita) and edited by Glenn Bech on http://stackoverflow.com/questions/8166497/custom-adapter-for-list-view.<br>
+-The contextmenu was inspired by Clarence posted on http://www.programering.com/a/MTOzIDNwATQ.html.<br>
+-API for using gson was based on lab work and lab lecture.<br>
+-API used for emailing was learned from fiXxed in http://stackoverflow.com/questions/2197741/how-can-i-send-emails-from-my-android-application
