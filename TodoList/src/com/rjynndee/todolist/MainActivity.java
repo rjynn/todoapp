@@ -85,7 +85,7 @@ public class MainActivity extends Activity {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.holdsmenu,menu);
 	}
-
+//the button controls:
 	public void SelectAll(MenuItem menu){
 		Toast.makeText(this, "Selected All", Toast.LENGTH_SHORT).show();
 	}
@@ -133,7 +133,7 @@ public class MainActivity extends Activity {
 		ls.addToDo(new Todos(textView.getText().toString()));
 		textView.setText(null);
 	}
-	
+	//this is the switch case used to implement the context menu when hold click
 	public boolean onContextItemSelected(MenuItem item){
 		AdapterView.AdapterContextMenuInfo myinfo = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
 		switch (item.getItemId()) {
