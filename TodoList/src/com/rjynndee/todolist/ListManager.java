@@ -21,7 +21,7 @@ public class ListManager {
 	
 	static private ListManager TodoListManager = null;
 	
-	public static void initManager(Context context){
+	public static void initManager(Context context){	//singleton
 		if (TodoListManager == null){
 			if (context ==null){
 				throw new RuntimeException("missing context for TodoListManager");
@@ -44,7 +44,7 @@ public class ListManager {
 	public TodoList loadTodoList(){
 		TodoList list = new TodoList();
 		try{
-		FileInputStream fis = context.openFileInput(FILENAME);
+		FileInputStream fis = context.openFileInput(FILENAME);	//uses gson lib to store and load
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		list = (TodoList) ois.readObject();
 		
